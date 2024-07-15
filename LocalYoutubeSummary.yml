@@ -1,0 +1,538 @@
+app:
+  description: ''
+  icon: "\U0001F916"
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: Youtube Summary
+workflow:
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: code
+      id: 1721009413096-source-1721009439113-target
+      source: '1721009413096'
+      sourceHandle: source
+      target: '1721009439113'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: template-transform
+      id: 1721009439113-source-1721009460164-target
+      source: '1721009439113'
+      sourceHandle: source
+      target: '1721009460164'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: template-transform
+        targetType: http-request
+      id: 1721009460164-source-1721009452461-target
+      source: '1721009460164'
+      sourceHandle: source
+      target: '1721009452461'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: tool
+      id: 1721009452461-source-1721009508883-target
+      source: '1721009452461'
+      sourceHandle: source
+      target: '1721009508883'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: if-else
+      id: 1721009508883-source-1721009532237-target
+      source: '1721009508883'
+      sourceHandle: source
+      target: '1721009532237'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: tool
+      id: 1721009532237-true-1721009573438-target
+      source: '1721009532237'
+      sourceHandle: 'true'
+      target: '1721009573438'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: tool
+      id: 1721009573438-source-1721009593393-target
+      source: '1721009573438'
+      sourceHandle: source
+      target: '1721009593393'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: tool
+      id: 1721009593393-source-1721009635413-target
+      source: '1721009593393'
+      sourceHandle: source
+      target: '1721009635413'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: code
+      id: 1721009635413-source-1721009671197-target
+      source: '1721009635413'
+      sourceHandle: source
+      target: '1721009671197'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: llm
+      id: 1721009671197-source-1721009696712-target
+      source: '1721009671197'
+      sourceHandle: source
+      target: '1721009696712'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1721009696712-source-1721009738935-target
+      source: '1721009696712'
+      sourceHandle: source
+      target: '1721009738935'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: answer
+      id: 1721009532237-false-1721009753551-target
+      source: '1721009532237'
+      sourceHandle: 'false'
+      target: '1721009753551'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: "\uC2DC\uC791"
+        type: start
+        variables: []
+      height: 54
+      id: '1721009413096'
+      position:
+        x: 80
+        y: 281
+      positionAbsolute:
+        x: 80
+        y: 281
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "\ndef main(arg1: str) -> dict:\n    v_id = arg1.split(\"v=\")[-1]\n\
+          \    return {\n        \"video_id\": v_id\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          video_id:
+            children: null
+            type: string
+        selected: false
+        title: "\uCF54\uB4DC"
+        type: code
+        variables:
+        - value_selector:
+          - sys
+          - query
+          variable: arg1
+      height: 54
+      id: '1721009439113'
+      position:
+        x: 384
+        y: 281
+      positionAbsolute:
+        x: 384
+        y: 281
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: ''
+          type: none
+        desc: ''
+        headers: ''
+        method: get
+        params: ''
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: "HTTP \uC694\uCCAD"
+        type: http-request
+        url: '{{#1721009460164.output#}}'
+        variables: []
+      height: 93
+      id: '1721009452461'
+      position:
+        x: 384
+        y: 387
+      positionAbsolute:
+        x: 384
+        y: 387
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        template: https://notegpt.io/api/v1/get-transcript-v2?video_id={{ video_id
+          }}&platform=youtube
+        title: "\uD15C\uD50C\uB9BF"
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1721009439113'
+          - video_id
+          variable: video_id
+      height: 54
+      id: '1721009460164'
+      position:
+        x: 384
+        y: 335
+      positionAbsolute:
+        x: 384
+        y: 335
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        provider_id: json_process
+        provider_name: json_process
+        provider_type: builtin
+        selected: false
+        title: JSON Parse
+        tool_configurations: {}
+        tool_label: JSON Parse
+        tool_name: parse
+        tool_parameters:
+          content:
+            type: mixed
+            value: '{{#1721009452461.body#}}'
+          json_filter:
+            type: mixed
+            value: message
+        type: tool
+      height: 54
+      id: '1721009508883'
+      position:
+        x: 384
+        y: 481
+      positionAbsolute:
+        x: 384
+        y: 481
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        conditions:
+        - comparison_operator: is
+          id: '1721009535902'
+          value: success
+          variable_selector:
+          - '1721009508883'
+          - text
+        desc: ''
+        logical_operator: and
+        selected: false
+        title: IF/ELSE
+        type: if-else
+      height: 126
+      id: '1721009532237'
+      position:
+        x: 678
+        y: 330
+      positionAbsolute:
+        x: 678
+        y: 330
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        provider_id: json_process
+        provider_name: json_process
+        provider_type: builtin
+        selected: false
+        title: Language_Find
+        tool_configurations: {}
+        tool_label: JSON Parse
+        tool_name: parse
+        tool_parameters:
+          content:
+            type: mixed
+            value: '{{#1721009452461.body#}}'
+          json_filter:
+            type: mixed
+            value: data[language_code][0][code]
+        type: tool
+      height: 54
+      id: '1721009573438'
+      position:
+        x: 982
+        y: 330
+      positionAbsolute:
+        x: 982
+        y: 330
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        provider_id: json_process
+        provider_name: json_process
+        provider_type: builtin
+        selected: false
+        title: Get_Title
+        tool_configurations: {}
+        tool_label: JSON Parse
+        tool_name: parse
+        tool_parameters:
+          content:
+            type: mixed
+            value: '{{#1721009452461.body#}}'
+          json_filter:
+            type: mixed
+            value: data[videoInfo][name]
+        type: tool
+      height: 54
+      id: '1721009593393'
+      position:
+        x: 982
+        y: 387
+      positionAbsolute:
+        x: 982
+        y: 387
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        provider_id: json_process
+        provider_name: json_process
+        provider_type: builtin
+        selected: false
+        title: Parse Transcript
+        tool_configurations: {}
+        tool_label: JSON Parse
+        tool_name: parse
+        tool_parameters:
+          content:
+            type: mixed
+            value: '{{#1721009452461.body#}}'
+          json_filter:
+            type: mixed
+            value: data[transcripts][{{#1721009573438.text#}}][default]
+        type: tool
+      height: 54
+      id: '1721009635413'
+      position:
+        x: 982
+        y: 444
+      positionAbsolute:
+        x: 982
+        y: 444
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "import json\ndef main(arg1: str) -> dict:\n    scripts = json.loads(arg1)\n\
+          \    texts = \"\\n\".join([s[\"text\"] for s in scripts])\n    print(texts)\n\
+          \    return {\n        \"result\": texts\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: Collect Script
+        type: code
+        variables:
+        - value_selector:
+          - '1721009635413'
+          - text
+          variable: arg1
+      height: 54
+      id: '1721009671197'
+      position:
+        x: 982
+        y: 499
+      positionAbsolute:
+        x: 982
+        y: 499
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemma2:9b
+          provider: ollama
+        prompt_template:
+        - role: system
+          text: "This is transcribe of video named {{#1721009593393.text#}}.\nYou\
+            \ have to generate summarization of the video.\nIn summarization, you\
+            \ have to contains below:\n1) Highlight: the main one sentence of the\
+            \ video, which can infer whole video, who, where, what.\n2) Key Contents:\
+            \ the summary of main contents with keywords that user can easily understand.\n\
+            * SUMMARIZATION LANGUAGE MUST BE KOREAN.\nSummarization must follow this\
+            \ format:\n## \uC81C\uBAA9\n[Title]\n## \uD558\uC774\uB77C\uC774\uD2B8\
+            \n[Hightlight]\n## \uD0A4\uC6CC\uB4DC\n* [\uD0A4\uC6CC\uB4DC1]: [\uB0B4\
+            \uC6A9\uC694\uC57D\uBB38\uC7A5]\n* [\uD0A4\uC6CC\uB4DC2]: [\uB0B4\uC6A9\
+            \uC694\uC57D\uBB38\uC7A5]\n...\nTranscribe: {{#1721009671197.result#}}"
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1721009696712'
+      position:
+        x: 1281
+        y: 330
+      positionAbsolute:
+        x: 1281
+        y: 330
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1721009696712.text#}}'
+        desc: ''
+        selected: false
+        title: "\uB2F5\uBCC0"
+        type: answer
+        variables: []
+      height: 107
+      id: '1721009738935'
+      position:
+        x: 1281
+        y: 434
+      positionAbsolute:
+        x: 1281
+        y: 434
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: "\uC0AC\uC6A9\uD560 \uC218 \uC5C6\uB294 URL\uC785\uB2C8\uB2E4."
+        desc: ''
+        selected: false
+        title: "\uB2F5\uBCC0 2"
+        type: answer
+        variables: []
+      height: 104
+      id: '1721009753551'
+      position:
+        x: 982
+        y: 593
+      positionAbsolute:
+        x: 982
+        y: 593
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -222.3409802448257
+      y: 186.00268861771025
+      zoom: 0.8512765361687995
