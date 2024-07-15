@@ -6,6 +6,7 @@ Dify 프레임워크를 사용하여 유튜브 영상 요약
 ## 어떻게 사용하나요?
 ### 1. yaml 파일을 다운로드 하고 압축을 해제
 <img width="1648" alt="스크린샷 2024-07-14 오후 9 30 31" src="https://github.com/user-attachments/assets/9a23ac18-6080-4c8c-8ebb-97270a980804">
+* 클라우드 dify를 사용하는 경우 Cloud로 시작하는 파일을, 셀프 호스팅 환경에서 하는 경우 Local로 시작하는 파일을 사용해주세요.
 
 ### 2. 파일 업로드
 * [Dify Cloud](https://cloud.dify.ai/apps)를 사용하면 직접 구축하지 않고도 Dify를 사용해볼 수 있습니다.
